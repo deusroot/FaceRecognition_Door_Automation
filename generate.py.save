@@ -54,7 +54,7 @@ if __name__ == '__main__':
             while (True):
                 
                 with picamera.array.PiRGBArray(camera) as stream:
-                    camera.capture(stream, format='bgr', use_video_port=False)
+                    camera.capture(stream, format='bgr', use_video_port=True)
                     image = stream.array
                     
                 
@@ -77,10 +77,10 @@ if __name__ == '__main__':
                 for (x,y,w,h) in faces:
                     cv2.rectangle(image, (x,y), (x+w, y+h), (255,0,0),2)
                     crop = resize(doCrop(gray, x, y, w, h))
-                    filePathForFile = ('./data/mg/%s.pgm' % str(count))
+                    filePathForFile = ('imagestotrain' % str(count))
                     cv2.imwrite(filePathForFile, crop)
                     filePaths.append(filePathForFile)
-                    print 'hello'
+                    
                     print filePaths
                     count += 1
                               
